@@ -1,0 +1,46 @@
+body{
+    background-color:black;
+}
+div.header{
+    font-family:'Orbitron',sans-serif;
+    background-color:darkslategray;
+    position:relative;
+    top:0px;
+    left:0px;
+    height:10%;
+    width:100%;
+}
+div.header h2{
+    text-align:center;
+    padding:4px;
+    color:white;
+    font-size:175%;
+}
+p{
+    font-family:'Orbitron',sans-serif;
+    color:white;
+    text-align:center;
+    font-size:30px;
+}
+div.input {
+    padding:4px;
+    position:relative;
+    top:15px;
+    left:25%;
+    width:50%;
+}
+div.input input{
+    width:70%;
+    padding-right:5%;
+}
+div.input button{
+    width:20%;
+    text-align:center;
+}
+div.stuff{
+    padding:4px;
+    position:relative;
+    top:5px;
+    left:25%;
+    width:50%;
+}
