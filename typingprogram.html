@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>I was bored</title>
-        <link rel="icon" href="icon.png">
+        <link rel="icon" href="./icon.png">
         <link rel="stylesheet" href="typingprogram.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap">
     </head>
@@ -14,15 +14,15 @@
         <div class="input">
             <p>Input your text:</p>
             <input id="message" type="text"></input>
-            <button onclick="myfunc()">Run</button>
+            <button onclick="typingprogram()">Run</button>
         </div>
         <div class="stuff">
-            <p id="input2">This is your message</p>
+            <p id="goingfor">This is your message</p>
             <p id="output"></p>
             <p id="tryfor"></p>
             <p id="attempt"></p>
-            <p id="text"></p>
-            <p id="nComplete"></p>
+            <p id="character"></p>
+            <p id="triestocomplete"></p>
 
         </div>
 
@@ -35,57 +35,40 @@
         </script>
         
         <script>
-            async function myfunc() {
+            async function typingprogram() {
                 var charsheet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-=_+,.:;'\" ";
-                var i = 0;
-                var m = 0;
-                var n;
-                var nComplete = 0;
-
                 var input = document.getElementById('message').value;
-                try {
-                    if (input == "") throw "Hello, World!";
+                var attempt = 0;
+                var triestocomplete = 0;
+                var i;
+                if (input == "") {
+                    input = "Hello, World!";
                 }
-                catch(empty) {
-                    input = empty;
-                }
-                document.getElementById('input2').innerHTML = input;
+                document.getElementById('goingfor').innerHTML = input;
+                document.getElementById('triestocomplete').innerHTML = "";
 
-                while (i < input.length) {
-                    break; //coming soon
-                }
-
+                i = 0;
                 while (i < input.length) {
                     await sleep(10);
-                    document.getElementById('tryfor').innerHTML = "Trying for \"" + input[i] + "\"";
-                    document.getElementById('attempt').innerHTML = "Attempt #" + n;
+                    document.getElementById('tryfor').innerHTML = `Trying for "${input[i]}"`;
+                    document.getElementById('attempt').innerHTML = `Attempt #${attempt}`;
 
-                    var char = Math.floor(Math.random() * charsheet.length);
-                    var select = charsheet.slice(char, (char + 1));
-                    document.getElementById('text').innerHTML = select;
+                    var select = charsheet.split("")[(Math.floor(Math.random() * charsheet.length))];
+                    document.getElementById('character').innerHTML = select;
+
+                    attempt++;
+                    triestocomplete++;
 
                     if (select == input[i]) {
-                        if (typeof m === 'number') {
-                            m = select;
-                            n += 1;
-                            document.getElementById('output').innerHTML = m;
-                            n = 0;
-                            nComplete += 1;
-                        } else {
-                            m += select;
-                            n += 1;
-                            document.getElementById('output').innerHTML = m;
-                            n = 0;
-                            nComplete += 1;
-                        }
-                        i += 1;
-                        continue;
-                    } else {
-                        n += 1;
-                        nComplete += 1;
+                        if (output) { output += select; } else { var output = select; }
+
+                        document.getElementById('output').innerHTML = output;
+                        document.getElementById('attempt').innerHTML = `Attempt #${attempt}`;
+                        attempt = 0;
+                        i++;
                     }
                 }
-                document.getElementById('nComplete').innerHTML = nComplete + " tries to complete"; 
+                document.getElementById('triestocomplete').innerHTML = `${triestocomplete} tries to complete`;
             }
         </script>
     </body>
