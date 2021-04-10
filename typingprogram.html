@@ -36,31 +36,34 @@
         
         <script>
             async function typingprogram() {
-                var charsheet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-=_+,.:;'\" ";
+                var charsheet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*-=_+,.:;'\" ";
                 var input = document.getElementById('message').value;
                 var attempt = 0;
                 var triestocomplete = 0;
-                var i;
                 if (input == "") {
                     input = "Hello, World!";
                 }
-                document.getElementById('goingfor').innerHTML = input;
+                for (x in input) {
+                    if (charsheet.includes(input[x]) != true) charsheet = charsheet.concat(input[x]);
+                }
+
+                document.getElementById('goingfor').innerHTML = charsheet;
                 document.getElementById('triestocomplete').innerHTML = "";
 
-                i = 0;
+                var i = 0;
                 while (i < input.length) {
                     await sleep(10);
                     document.getElementById('tryfor').innerHTML = `Trying for "${input[i]}"`;
                     document.getElementById('attempt').innerHTML = `Attempt #${attempt}`;
 
-                    var select = charsheet.split("")[(Math.floor(Math.random() * charsheet.length))];
+                    var select = charsheet[(Math.floor(Math.random() * charsheet.length))];
                     document.getElementById('character').innerHTML = select;
 
                     attempt++;
                     triestocomplete++;
 
                     if (select == input[i]) {
-                        if (output) { output += select; } else { var output = select; }
+                        if (output) output += select; else var output = select;
 
                         document.getElementById('output').innerHTML = output;
                         document.getElementById('attempt').innerHTML = `Attempt #${attempt}`;
